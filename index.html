@@ -15,16 +15,15 @@
             width: 100%;
             height: 100%;
             background-color: #000000;
-            z-index: 9999; /* Всегда поверх сайта */
+            z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
-        /* Логотип на заставке плавно проявляется */
         .loader-logo {
-            width: 250px; /* Размер лого на черном экране */
+            width: 250px;
             height: auto;
             opacity: 0;
             animation: fadeInLogo 1.2s ease forwards;
@@ -35,7 +34,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Класс, который уберет заставку через JS */
         #preloader.fade-out {
             opacity: 0;
             visibility: hidden;
@@ -52,7 +50,6 @@
         }
 
         body {
-            /* Фоновое изображение уменьшено до 50% */
             background-image: url("https://iili.io/CHwa1yl.png"), linear-gradient(135deg, #000000, #3a000d, #800022, #ff003c, #1a0005, #000000);
             background-position: center center;
             background-repeat: no-repeat;
@@ -69,7 +66,6 @@
             position: relative;
         }
 
-        /* Слой затемнения, чтобы фон переливался сочно, но не слепил */
         body::before {
             content: "";
             position: fixed;
@@ -98,7 +94,6 @@
             z-index: 10;
         }
 
-        /* Общие стили для кнопок соцсетей */
         .social-link {
             display: flex;
             align-items: center;
@@ -197,7 +192,6 @@
             gap: 25px;
         }
 
-        /* Заголовок секции INACTIVE */
         .section-divider {
             text-align: center;
             font-size: 24px;
@@ -238,11 +232,10 @@
             opacity: 1;
         }
 
-        /* Блок под аватарку */
         .player-avatar {
-            width: 120px;
-            min-width: 120px;
-            height: 120px;
+            width: 135px;
+            min-width: 135px;
+            height: 135px;
             background: #141414;
             border-right: 2px solid #ff4d4d;
             display: flex;
@@ -260,7 +253,6 @@
             object-fit: cover;
         }
 
-        /* Контент информации */
         .player-content {
             display: flex;
             width: 100%;
@@ -297,6 +289,50 @@
         
         .player-elo span { font-size: 20px; }
 
+        /* Кнопки профилей игрока (Steam / Faceit) */
+        .player-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .p-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 12px;
+            background: #181818;
+            border: 1px solid #444;
+            border-radius: 3px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            gap: 5px;
+        }
+
+        .p-link svg {
+            width: 13px;
+            height: 13px;
+            fill: #aaa;
+            transition: fill 0.2s ease;
+        }
+
+        /* Эффект при наведении на кнопки в карточке */
+        .p-link:hover {
+            color: #fff;
+            border-color: #ff4d4d;
+            background: #250007;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+        }
+
+        .p-link:hover svg {
+            fill: #ff4d4d;
+        }
+
         /* Мобильная адаптивность */
         @media (max-width: 480px) {
             body { background-size: 100% auto, 300% 300%; }
@@ -308,12 +344,13 @@
             }
             .header-container { margin-top: 0; margin-bottom: 30px; }
             .nav-item { font-size: 11px; padding: 10px 5px; }
-            .player-avatar { width: 90px; min-width: 90px; height: 90px; }
+            .player-avatar { width: 110px; min-width: 110px; height: 110px; }
             .player-content { padding: 10px 12px; }
             .info-row.nickname span, .player-elo span { font-size: 15px; }
             .info-row { font-size: 12px; }
             .section-divider { font-size: 20px; }
             .loader-logo { width: 180px; }
+            .p-link { padding: 3px 8px; font-size: 10px; }
         }
     </style>
 </head>
@@ -323,14 +360,13 @@
         <img src="https://iili.io/CHwa1yl.png" alt="na_myase" class="loader-logo">
     </div>
 
-    <!-- Блок соцсетей -->
     <div class="social-links">
         <a href="https://t.me/+n0y5YCi5uhoxOWEy" target="_blank" class="social-link" title="Наш Telegram">
             <svg viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.7-2.46 2.75-2.67.01-.03.01-.15-.06-.21-.07-.06-.17-.04-.25-.02-.11.02-1.84 1.16-5.2 3.43-.49.34-.94.5-1.34.49-.45-.01-1.3-.25-1.94-.46-.78-.26-1.4-.4-1.35-.85.03-.24.35-.48.97-.73 3.78-1.64 6.3-2.73 7.56-3.26 3.6-1.5 4.34-1.76 4.83-1.77.11 0 .35.03.5.15.12.1.16.23.18.33.02.08.03.25.02.32z"/>
             </svg>
         </a>
-        <a href="https://www.instagram.com/sg.rec0rdz/" target="_blank" class="social-link" title="Наш Instagram">
+        <a href="#" target="_blank" class="social-link" title="Наш Instagram">
             <svg viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
             </svg>
@@ -348,6 +384,7 @@
 
     <div class="roster-container">
 
+        <!-- ИГРОК 1: nsevenn -->
         <div class="player-card">
             <div class="player-avatar">
                 <img src="https://distribution.faceit-cdn.net/images/3eafa55c-0f90-4d58-9cdf-63f08e1084f1.jpg" alt="nsevenn">
@@ -356,12 +393,17 @@
                 <div class="player-info">
                     <div class="info-row nickname">nickname: <span>nsevenn</span></div>
                     <div class="info-row">pos: <span>cap</span></div>
-                    <div class="info-row">info: <span>kolyasik 15yo</span></div>
+                    <div class="info-row">info: <span>kolya 22 y.o</span></div>
+                    <div class="player-links">
+                        <a href="https://steamcommunity.com/id/nnsevenn" target="_blank" class="p-link">Steam</a>
+                        <a href="https://www.faceit.com/ru/players/takinami" target="_blank" class="p-link">Faceit</a>
+                    </div>
                 </div>
                 <div class="player-elo">current elo: <br><span>2319</span></div>
             </div>
         </div>
 
+        <!-- ИГРОК 2: mozambique -->
         <div class="player-card">
             <div class="player-avatar">
                 <img src="https://distribution.faceit-cdn.net/images/c835b7a5-6b69-48a4-97bd-3d29a3364388.jpeg" alt="mozambique">
@@ -371,11 +413,16 @@
                     <div class="info-row nickname">nickname: <span>mozambique</span></div>
                     <div class="info-row">pos: <span>riffler</span></div>
                     <div class="info-row">info: <span>sereja 22 yo</span></div>
+                    <div class="player-links">
+                        <a href="https://steamcommunity.com/profiles/76561199192831832" target="_blank" class="p-link">Steam</a>
+                        <a href="https://www.faceit.com/ru/players/mozzambique" target="_blank" class="p-link">Faceit</a>
+                    </div>
                 </div>
                 <div class="player-elo">current elo: <br><span>2048</span></div>
             </div>
         </div>
 
+        <!-- ИГРОК 3: STAGE -->
         <div class="player-card">
             <div class="player-avatar">
                 <img src="https://assets.faceit-cdn.net/avatars/b6782170-aa61-454d-bef9-7b2fe80888ce_1607675158637.jpg" alt="STAGE">
@@ -385,6 +432,10 @@
                     <div class="info-row nickname">nickname: <span>STAGE</span></div>
                     <div class="info-row">pos: <span>riffler</span></div>
                     <div class="info-row">info: <span>gleb "bob" glebskovich 19 y.o</span></div>
+                    <div class="player-links">
+                        <a href="https://steamcommunity.com/id/enveeltop1" target="_blank" class="p-link">Steam</a>
+                        <a href="https://www.faceit.com/ru/players/stage" target="_blank" class="p-link">Faceit</a>
+                    </div>
                 </div>
                 <div class="player-elo">current elo: <br><span>2198</span></div>
             </div>
@@ -393,6 +444,7 @@
         <div class="section-divider">Inactive</div>
         
         <div class="roster-container inactive-section">
+            <!-- ИГРОК 4: askur1337 (INACTIVE) -->
             <div class="player-card">
                 <div class="player-avatar">
                     <img src="https://distribution.faceit-cdn.net/images/8822e1db-16e4-436d-b5eb-035f6eb5dace.jpeg" alt="askur1337">
@@ -402,11 +454,16 @@
                         <div class="info-row nickname">nickname: <span>askur1337</span></div>
                         <div class="info-row">pos: <span>site anchor</span></div>
                         <div class="info-row">info: <span>artem 23 y.o</span></div>
+                        <div class="player-links">
+                            <a href="https://steamcommunity.com/profiles/76561199160951698" target="_blank" class="p-link">Steam</a>
+                            <a href="https://www.faceit.com/ru/players/Askur666" target="_blank" class="p-link">Faceit</a>
+                        </div>
                     </div>
                     <div class="player-elo">current elo: <br><span>Unranked</span></div>
                 </div>
             </div>
 
+            <!-- ИГРОК 5: veerzeevul (INACTIVE) -->
             <div class="player-card">
                 <div class="player-avatar">
                     <img src="https://distribution.faceit-cdn.net/images/803b1047-3a9f-4fe9-8035-87ef4764d0cd.jpg" alt="veerzeevul">
@@ -416,6 +473,10 @@
                         <div class="info-row nickname">nickname: <span>veerzeevul</span></div>
                         <div class="info-row">pos: <span>sniper</span></div>
                         <div class="info-row">info: <span>sereja 22 y.o</span></div>
+                        <div class="player-links">
+                            <a href="https://steamcommunity.com/id/Veerzevul" target="_blank" class="p-link">Steam</a>
+                            <a href="https://www.faceit.com/ru/players/Veerzevul" target="_blank" class="p-link">Faceit</a>
+                        </div>
                     </div>
                     <div class="player-elo">current elo: <br><span>2066</span></div>
                 </div>
@@ -427,7 +488,6 @@
     <script>
         window.addEventListener('load', function () {
             const preloader = document.getElementById('preloader');
-            // 2000 миллисекунд = 2 секунды показа логотипа
             setTimeout(() => {
                 preloader.classList.add('fade-out');
             }, 2000);
