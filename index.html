@@ -5,7 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>na_myase — Состав команды</title>
     <style>
-        /* Общие настройки и ЯРКИЙ анимированный фон с логотипом */
+        /* ========================================================
+           СТИЛИ ДЛЯ ПРЕЛОАДЕРА (ПРИВЕТСТВЕННОГО ЭКРАНА)
+           ======================================================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 9999; /* Всегда поверх сайта */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        /* Логотип на заставке плавно проявляется */
+        .loader-logo {
+            width: 250px; /* Размер лого на черном экране */
+            height: auto;
+            opacity: 0;
+            animation: fadeInLogo 1.2s ease forwards;
+        }
+
+        @keyframes fadeInLogo {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Класс, который уберет заставку через JS */
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* ========================================================
+           ОСНОВНЫЕ СТИЛИ САЙТА
+           ======================================================== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,14 +52,13 @@
         }
 
         body {
-            /* Подключаем твою картинку и выставляем более сочные, яркие неоново-бордовые и красные цвета */
+            /* Фоновое изображение уменьшено до 50% */
             background-image: url("https://iili.io/CHwa1yl.png"), linear-gradient(135deg, #000000, #3a000d, #800022, #ff003c, #1a0005, #000000);
             background-position: center center;
             background-repeat: no-repeat;
-            background-size: 65% auto, 300% 300%;
+            background-size: 50% auto, 300% 300%;
             background-attachment: fixed;
             
-            /* Ускорили анимацию до 8 секунд для большей динамики */
             animation: gradientBg 8s ease infinite;
             color: #ffffff;
             min-height: 100vh;
@@ -32,7 +69,7 @@
             position: relative;
         }
 
-        /* Слой затемнения: сделали 0.65, чтобы логотип и перелив стали НАМНОГО ярче */
+        /* Слой затемнения, чтобы фон переливался сочно, но не слепил */
         body::before {
             content: "";
             position: fixed;
@@ -81,9 +118,7 @@
             transition: fill 0.3s ease;
         }
 
-        .tg-link:hover svg {
-            fill: #000000;
-        }
+        .tg-link:hover svg { fill: #000000; }
 
         /* Шапка / Навигация */
         .header-container {
@@ -135,9 +170,7 @@
             border-right: 1px solid #333;
         }
 
-        .nav-item:last-child {
-            border-right: none;
-        }
+        .nav-item:last-child { border-right: none; }
 
         .nav-item.active, .nav-item:hover {
             background: #ff4d4d;
@@ -170,7 +203,7 @@
         /* Карточка игрока */
         .player-card {
             display: flex;
-            background: rgba(12, 12, 12, 0.93); /* Оставляем плотный фон у карточек, чтобы текст отлично читался на ярком фоне */
+            background: rgba(12, 12, 12, 0.93);
             border: 2px solid #33000a;
             border-left: 5px solid #ff4d4d;
             border-radius: 4px;
@@ -209,13 +242,8 @@
             overflow: hidden;
         }
 
-        .inactive-section .player-avatar {
-            border-right-color: #660011;
-        }
-
-        .inactive-section .player-card:hover .player-avatar {
-            border-right-color: #ff4d4d;
-        }
+        .inactive-section .player-avatar { border-right-color: #660011; }
+        .inactive-section .player-card:hover .player-avatar { border-right-color: #ff4d4d; }
 
         .player-avatar img {
             width: 100%;
@@ -223,7 +251,7 @@
             object-fit: cover;
         }
 
-        /* Главный контейнер для инфы */
+        /* Контент информации */
         .player-content {
             display: flex;
             width: 100%;
@@ -232,14 +260,12 @@
             padding: 15px 20px;
         }
 
-        /* Левая часть инфы игрока */
         .player-info {
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
 
-        /* Правая часть инфы игрока (Для ЭЛО) */
         .player-elo {
             text-align: right;
             font-size: 14px;
@@ -248,17 +274,9 @@
             padding-left: 10px;
         }
 
-        .info-row {
-            font-size: 14px;
-            color: #b3b3b3;
-        }
+        .info-row { font-size: 14px; color: #b3b3b3; }
+        .info-row span { color: #fff; font-weight: bold; }
 
-        .info-row span {
-            color: #fff;
-            font-weight: bold;
-        }
-
-        /* Подсветка никнейма и цифр ELO в едином стиле */
         .info-row.nickname span, .player-elo span {
             color: #ff4d4d;
             font-size: 19px;
@@ -268,48 +286,28 @@
             font-weight: bold;
         }
         
-        .player-elo span {
-            font-size: 20px;
-        }
+        .player-elo span { font-size: 20px; }
 
-        /* Адаптивность под мобильные экраны */
+        /* Мобильная адаптивность */
         @media (max-width: 480px) {
-            body {
-                background-size: 130% auto, 300% 300%;
-            }
-            .tg-link {
-                position: static;
-                margin-bottom: 20px;
-            }
-            .header-container {
-                margin-top: 0;
-                margin-bottom: 30px;
-            }
-            .nav-item {
-                font-size: 11px;
-                padding: 10px 5px;
-            }
-            .player-avatar {
-                width: 90px;
-                min-width: 90px;
-                height: 90px;
-            }
-            .player-content {
-                padding: 10px 12px;
-            }
-            .info-row.nickname span, .player-elo span {
-                font-size: 15px;
-            }
-            .info-row {
-                font-size: 12px;
-            }
-            .section-divider {
-                font-size: 20px;
-            }
+            body { background-size: 100% auto, 300% 300%; }
+            .tg-link { position: static; margin-bottom: 20px; }
+            .header-container { margin-top: 0; margin-bottom: 30px; }
+            .nav-item { font-size: 11px; padding: 10px 5px; }
+            .player-avatar { width: 90px; min-width: 90px; height: 90px; }
+            .player-content { padding: 10px 12px; }
+            .info-row.nickname span, .player-elo span { font-size: 15px; }
+            .info-row { font-size: 12px; }
+            .section-divider { font-size: 20px; }
+            .loader-logo { width: 180px; }
         }
     </style>
 </head>
 <body>
+
+    <div id="preloader">
+        <img src="https://iili.io/CHwa1yl.png" alt="na_myase" class="loader-logo">
+    </div>
 
     <a href="https://t.me/+n0y5YCi5uhoxOWEy" target="_blank" class="tg-link" title="Наш Telegram">
         <svg viewBox="0 0 24 24">
@@ -319,12 +317,12 @@
 
     <div class="header-container">
         <div class="main-title">na_myase</div>
-         <nav class="nav-menu">
-           <a href="about.html" class="nav-item">о нас</a>
-           <a href="index.html" class="nav-item active">состав</a>
-           <a href="tournaments.html" class="nav-item">турниры</a>
-         </nav>
-        </div>
+        <nav class="nav-menu">
+            <a href="about.html" class="nav-item">о нас</a>
+            <a href="index.html" class="nav-item active">состав</a>
+            <a href="tournaments.html" class="nav-item">турниры</a>
+        </nav>
+    </div>
 
     <div class="roster-container">
 
@@ -403,6 +401,16 @@
         </div>
 
     </div>
+
+    <script>
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            // 2000 миллисекунд = 2 секунды показа логотипа
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+            }, 2000);
+        });
+    </script>
 
 </body>
 </html>
