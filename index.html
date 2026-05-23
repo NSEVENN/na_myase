@@ -39,6 +39,13 @@
             visibility: hidden;
         }
 
+        /* Класс для моментального скрытия без задержек */
+        #preloader.instant-hide {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
         /* ========================================================
            ОСНОВНЫЕ СТИЛИ САЙТА
            ======================================================== */
@@ -353,6 +360,12 @@
             .p-link { padding: 3px 8px; font-size: 10px; }
         }
     </style>
+    <!-- Проверка сессии ДО рендеринга страницы (чтобы избежать белого/черного мигания) -->
+    <script>
+        if (sessionStorage.getItem('preloaderShown')) {
+            document.documentElement.classList.add('preloader-skipped');
+        }
+    </script>
 </head>
 <body>
 
@@ -486,12 +499,21 @@
     </div>
 
     <script>
-        window.addEventListener('load', function () {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.classList.add('fade-out');
-            }, 2000);
-        });
+        const preloader = document.getElementById('preloader');
+
+        // Если в этой сессии прелоадер уже показывался
+        if (document.documentElement.classList.contains('preloader-skipped')) {
+            preloader.classList.add('instant-hide');
+        } else {
+            // Первый запуск сайта
+            window.addEventListener('load', function () {
+                setTimeout(() => {
+                    preloader.classList.add('fade-out');
+                    // Запоминаем, что прелоадер успешно показан
+                    sessionStorage.setItem('preloaderShown', 'true');
+                }, 2000);
+            });
+        }
     </script>
 
 </body>
