@@ -1,427 +1,555 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>na_myase — Состав команды</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>na_myase — Состав команды</title>
 
-    <style>
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
+<style>
+#preloader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+z-index:9999;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:opacity .6s ease,visibility .6s ease;
+}
 
-        .loader-logo {
-            width: 250px;
-            height: auto;
-            opacity: 0;
-            animation: fadeInLogo 1.2s ease forwards;
-        }
+.loader-logo{
+width:250px;
+opacity:0;
+animation:fadeInLogo 1.2s ease forwards;
+}
 
-        @keyframes fadeInLogo {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+@keyframes fadeInLogo{
+from{opacity:0;transform:scale(.9);}
+to{opacity:1;transform:scale(1);}
+}
 
-        #preloader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
+#preloader.fade-out{
+opacity:0;
+visibility:hidden;
+}
 
-        #preloader.instant-hide {
-            display: none !important;
-        }
+#preloader.instant-hide{
+display:none!important;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
 
-        body {
-            background-image: url("https://iili.io/CHwa1yl.png"), linear-gradient(135deg, #000000, #3a000d, #800022, #ff003c, #1a0005, #000000);
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: 50% auto, 300% 300%;
-            background-attachment: fixed;
-            animation: gradientBg 8s ease infinite;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            position: relative;
-        }
+body{
+background-image:
+url("https://iili.io/CHwa1yl.png"),
+linear-gradient(135deg,#000000,#3a000d,#800022,#ff003c,#1a0005,#000000);
+background-position:center center;
+background-repeat:no-repeat;
+background-size:50% auto,300% 300%;
+background-attachment:fixed;
+animation:gradientBg 8s ease infinite;
+color:#fff;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:40px 20px;
+position:relative;
+}
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.65);
-            z-index: -1;
-        }
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:-1;
+}
 
-        @keyframes gradientBg {
-            0% { background-position: center center, 0% 50%; }
-            50% { background-position: center center, 100% 50%; }
-            100% { background-position: center center, 0% 50%; }
-        }
+@keyframes gradientBg{
+0%{background-position:center center,0% 50%;}
+50%{background-position:center center,100% 50%;}
+100%{background-position:center center,0% 50%;}
+}
 
-        .header-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
-        }
+.social-links{
+position:absolute;
+top:25px;
+left:25px;
+display:flex;
+flex-direction:column;
+gap:12px;
+z-index:10;
+}
 
-        .main-title {
-            background: #111;
-            border: 2px solid #ff4d4d;
-            border-bottom: none;
-            padding: 8px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-            width: fit-content;
-            text-align: center;
-        }
+.social-link{
+display:flex;
+align-items:center;
+justify-content:center;
+width:45px;
+height:45px;
+background:rgba(17,17,17,.8);
+border:2px solid #ff4d4d;
+border-radius:50%;
+transition:.3s;
+}
 
-        .nav-menu {
-            display: flex;
-            width: 100%;
-            background: #111;
-            border: 2px solid #ff4d4d;
-            clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
-            overflow: hidden;
-        }
+.social-link:hover{
+transform:scale(1.1);
+background:#ff4d4d;
+}
 
-        .nav-item {
-            flex: 1;
-            text-align: center;
-            padding: 12px 10px;
-            text-decoration: none;
-            color: #ccc;
-            font-weight: 500;
-            text-transform: uppercase;
-            font-size: 14px;
-            transition: 0.3s;
-        }
+.social-link svg{
+width:22px;
+height:22px;
+fill:#ff4d4d;
+transition:.3s;
+}
 
-        .nav-item.active,
-        .nav-item:hover {
-            background: #ff4d4d;
-            color: #000;
-            font-weight: bold;
-        }
+.social-link:hover svg{
+fill:#000;
+}
 
-        .roster-container {
-            width: 100%;
-            max-width: 650px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
+.header-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+margin-bottom:50px;
+width:100%;
+max-width:600px;
+margin-top:20px;
+}
 
-        .section-divider {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 8px;
-            color: #ff4d4d;
-            text-transform: uppercase;
-            margin: 20px 0 10px;
-        }
+.main-title{
+background:#111;
+border:2px solid #ff4d4d;
+border-bottom:none;
+padding:8px 30px;
+font-size:18px;
+font-weight:bold;
+letter-spacing:2px;
+text-transform:uppercase;
+clip-path:polygon(15% 0%,85% 0%,100% 100%,0% 100%);
+}
 
-        .player-card {
-            display: flex;
-            background: rgba(12,12,12,0.93);
-            border: 2px solid #33000a;
-            border-left: 5px solid #ff4d4d;
-            border-radius: 4px;
-            overflow: hidden;
-            transition: 0.2s;
-        }
+.nav-menu{
+display:flex;
+width:100%;
+background:#111;
+border:2px solid #ff4d4d;
+clip-path:polygon(5% 0%,95% 0%,100% 100%,0% 100%);
+overflow:hidden;
+}
 
-        .player-card:hover {
-            transform: translateX(5px);
-            border-color: #ff4d4d;
-        }
+.nav-item{
+flex:1;
+text-align:center;
+padding:12px 10px;
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+text-transform:uppercase;
+transition:.3s;
+}
 
-        .player-avatar {
-            width: 135px;
-            min-width: 135px;
-            height: 135px;
-            overflow: hidden;
-        }
+.nav-item.active,
+.nav-item:hover{
+background:#ff4d4d;
+color:#000;
+font-weight:bold;
+}
 
-        .player-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.roster-container{
+width:100%;
+max-width:650px;
+display:flex;
+flex-direction:column;
+gap:25px;
+}
 
-        .player-content {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
+.section-divider{
+text-align:center;
+font-size:24px;
+font-weight:900;
+letter-spacing:8px;
+color:#ff4d4d;
+text-transform:uppercase;
+margin:20px 0 10px;
+}
 
-        .player-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+.player-card{
+display:flex;
+background:rgba(12,12,12,.93);
+border:2px solid #33000a;
+border-left:5px solid #ff4d4d;
+border-radius:4px;
+overflow:hidden;
+transition:.2s;
+}
 
-        .info-row {
-            font-size: 14px;
-            color: #b3b3b3;
-        }
+.player-card:hover{
+transform:translateX(5px);
+border-color:#ff4d4d;
+}
 
-        .info-row span {
-            color: white;
-            font-weight: bold;
-        }
+.inactive-section .player-card{
+border-left-color:#660011;
+opacity:.8;
+}
 
-        .nickname span,
-        .player-elo span {
-            color: #ff4d4d;
-            font-size: 20px;
-            text-transform: uppercase;
-        }
+.player-avatar{
+width:135px;
+min-width:135px;
+height:135px;
+overflow:hidden;
+}
 
-        .player-links {
-            display: flex;
-            gap: 10px;
-            margin-top: 5px;
-        }
+.player-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
-        .p-link {
-            padding: 4px 12px;
-            background: #181818;
-            border: 1px solid #444;
-            border-radius: 3px;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 11px;
-            transition: 0.2s;
-        }
+.player-content{
+display:flex;
+width:100%;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+}
 
-        .p-link:hover {
-            color: white;
-            border-color: #ff4d4d;
-        }
+.player-info{
+display:flex;
+flex-direction:column;
+gap:6px;
+}
 
-        .player-elo {
-            text-align: right;
-            font-size: 14px;
-        }
+.info-row{
+font-size:14px;
+color:#b3b3b3;
+}
 
-        @media (max-width: 480px) {
-            .player-avatar {
-                width: 100px;
-                min-width: 100px;
-                height: 100px;
-            }
+.info-row span{
+color:#fff;
+font-weight:bold;
+}
 
-            .player-content {
-                padding: 10px;
-            }
+.info-row.nickname span,
+.player-elo span{
+color:#ff4d4d;
+font-size:19px;
+text-transform:uppercase;
+}
 
-            .nickname span,
-            .player-elo span {
-                font-size: 15px;
-            }
-        }
-    </style>
+.player-links{
+display:flex;
+gap:10px;
+margin-top:4px;
+}
+
+.p-link{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:4px 12px;
+background:#181818;
+border:1px solid #444;
+border-radius:3px;
+color:#aaa;
+text-decoration:none;
+font-size:11px;
+font-weight:bold;
+text-transform:uppercase;
+transition:.2s;
+}
+
+.p-link:hover{
+color:#fff;
+border-color:#ff4d4d;
+background:#250007;
+}
+
+.player-elo{
+text-align:right;
+font-size:14px;
+}
+
+@media(max-width:480px){
+
+body{
+background-size:100% auto,300% 300%;
+}
+
+.social-links{
+position:static;
+flex-direction:row;
+margin-bottom:20px;
+}
+
+.player-avatar{
+width:110px;
+min-width:110px;
+height:110px;
+}
+
+.player-content{
+padding:10px 12px;
+}
+
+.info-row.nickname span,
+.player-elo span{
+font-size:15px;
+}
+}
+</style>
 </head>
 
 <body>
 
 <div id="preloader">
-    <img src="https://iili.io/CHwa1yl.png" alt="logo" class="loader-logo">
+<img src="https://iili.io/CHwa1yl.png" class="loader-logo">
+</div>
+
+<div class="social-links">
+
+<a href="https://t.me/+n0y5YCi5uhoxOWEy" target="_blank" class="social-link">
+<svg viewBox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+</svg>
+</a>
+
+<a href="#" target="_blank" class="social-link">
+<svg viewBox="0 0 24 24">
+<path d="M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/>
+</svg>
+</a>
+
 </div>
 
 <div class="header-container">
-    <div class="main-title">na_myase</div>
 
-    <nav class="nav-menu">
-        <a href="about.html" class="nav-item">о нас</a>
-        <a href="index.html" class="nav-item active">состав</a>
-        <a href="tournaments.html" class="nav-item">турниры</a>
-    </nav>
+<div class="main-title">na_myase</div>
+
+<nav class="nav-menu">
+<a href="about.html" class="nav-item">о нас</a>
+<a href="index.html" class="nav-item active">состав</a>
+<a href="tournaments.html" class="nav-item">турниры</a>
+</nav>
+
 </div>
 
 <div class="roster-container">
 
-    <div class="section-divider">Active</div>
+<div class="section-divider">Active</div>
 
-    <!-- nsevenn -->
-    <div class="player-card">
-        <div class="player-avatar">
-            <img src="https://distribution.faceit-cdn.net/images/3eafa55c-0f90-4d58-9cdf-63f08e1084f1.jpg">
-        </div>
+<!-- nsevenn -->
+<div class="player-card">
+<div class="player-avatar">
+<img src="https://distribution.faceit-cdn.net/images/3eafa55c-0f90-4d58-9cdf-63f08e1084f1.jpg">
+</div>
 
-        <div class="player-content">
-            <div class="player-info">
-                <div class="info-row nickname">nickname: <span>nsevenn</span></div>
-                <div class="info-row">pos: <span>cap</span></div>
-                <div class="info-row">info: <span>kolya 22 y.o</span></div>
+<div class="player-content">
 
-                <div class="player-links">
-                    <a href="https://steamcommunity.com/id/nnsevenn" target="_blank" class="p-link">Steam</a>
-                    <a href="https://www.faceit.com/ru/players/takinami" target="_blank" class="p-link">Faceit</a>
-                </div>
-            </div>
+<div class="player-info">
+<div class="info-row nickname">nickname: <span>nsevenn</span></div>
+<div class="info-row">pos: <span>cap</span></div>
+<div class="info-row">info: <span>kolya 22 y.o</span></div>
 
-            <div class="player-elo">
-                current elo: <br>
-                <span id="elo-takinami">Загрузка...</span>
-            </div>
-        </div>
-    </div>
+<div class="player-links">
+<a href="https://steamcommunity.com/id/nnsevenn" target="_blank" class="p-link">Steam</a>
+<a href="https://www.faceit.com/ru/players/takinami" target="_blank" class="p-link">Faceit</a>
+</div>
+</div>
 
-    <!-- mozambique -->
-    <div class="player-card">
-        <div class="player-avatar">
-            <img src="https://distribution.faceit-cdn.net/images/c835b7a5-6b69-48a4-97bd-3d29a3364388.jpeg">
-        </div>
+<div class="player-elo">
+current elo: <br>
+<span id="elo-takinami">Загрузка...</span>
+</div>
 
-        <div class="player-content">
-            <div class="player-info">
-                <div class="info-row nickname">nickname: <span>mozambique</span></div>
-                <div class="info-row">pos: <span>riffler</span></div>
-                <div class="info-row">info: <span>sereja 22 y.o</span></div>
+</div>
+</div>
 
-                <div class="player-links">
-                    <a href="https://steamcommunity.com/profiles/76561199192831832" target="_blank" class="p-link">Steam</a>
-                    <a href="https://www.faceit.com/ru/players/mozzambique" target="_blank" class="p-link">Faceit</a>
-                </div>
-            </div>
+<!-- mozambique -->
+<div class="player-card">
+<div class="player-avatar">
+<img src="https://distribution.faceit-cdn.net/images/c835b7a5-6b69-48a4-97bd-3d29a3364388.jpeg">
+</div>
 
-            <div class="player-elo">
-                current elo: <br>
-                <span id="elo-mozzambique">Загрузка...</span>
-            </div>
-        </div>
-    </div>
+<div class="player-content">
 
-    <!-- STAGE -->
-    <div class="player-card">
-        <div class="player-avatar">
-            <img src="https://assets.faceit-cdn.net/avatars/b6782170-aa61-454d-bef9-7b2fe80888ce_1607675158637.jpg">
-        </div>
+<div class="player-info">
+<div class="info-row nickname">nickname: <span>mozambique</span></div>
+<div class="info-row">pos: <span>riffler</span></div>
+<div class="info-row">info: <span>sereja 22 y.o</span></div>
 
-        <div class="player-content">
-            <div class="player-info">
-                <div class="info-row nickname">nickname: <span>STAGE</span></div>
-                <div class="info-row">pos: <span>riffler</span></div>
-                <div class="info-row">info: <span>gleb 19 y.o</span></div>
+<div class="player-links">
+<a href="https://steamcommunity.com/profiles/76561199192831832" target="_blank" class="p-link">Steam</a>
+<a href="https://www.faceit.com/ru/players/mozzambique" target="_blank" class="p-link">Faceit</a>
+</div>
+</div>
 
-                <div class="player-links">
-                    <a href="https://steamcommunity.com/id/enveeltop1" target="_blank" class="p-link">Steam</a>
-                    <a href="https://www.faceit.com/ru/players/stage" target="_blank" class="p-link">Faceit</a>
-                </div>
-            </div>
+<div class="player-elo">
+current elo: <br>
+<span id="elo-mozzambique">Загрузка...</span>
+</div>
 
-            <div class="player-elo">
-                current elo: <br>
-                <span id="elo-stage">Загрузка...</span>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
 
-    <!-- Veerzevul -->
-    <div class="player-card">
-        <div class="player-avatar">
-            <img src="https://distribution.faceit-cdn.net/images/803b1047-3a9f-4fe9-8035-87ef4764d0cd.jpg">
-        </div>
+<!-- STAGE -->
+<div class="player-card">
+<div class="player-avatar">
+<img src="https://assets.faceit-cdn.net/avatars/b6782170-aa61-454d-bef9-7b2fe80888ce_1607675158637.jpg">
+</div>
 
-        <div class="player-content">
-            <div class="player-info">
-                <div class="info-row nickname">nickname: <span>veerzeevul</span></div>
-                <div class="info-row">pos: <span>sniper</span></div>
-                <div class="info-row">info: <span>sereja 22 y.o</span></div>
+<div class="player-content">
 
-                <div class="player-links">
-                    <a href="https://steamcommunity.com/id/Veerzevul" target="_blank" class="p-link">Steam</a>
-                    <a href="https://www.faceit.com/ru/players/Veerzevul" target="_blank" class="p-link">Faceit</a>
-                </div>
-            </div>
+<div class="player-info">
+<div class="info-row nickname">nickname: <span>STAGE</span></div>
+<div class="info-row">pos: <span>riffler</span></div>
+<div class="info-row">info: <span>gleb 19 y.o</span></div>
 
-            <div class="player-elo">
-                current elo: <br>
-                <span id="elo-veerzevul">Загрузка...</span>
-            </div>
-        </div>
-    </div>
+<div class="player-links">
+<a href="https://steamcommunity.com/id/enveeltop1" target="_blank" class="p-link">Steam</a>
+<a href="https://www.faceit.com/ru/players/stage" target="_blank" class="p-link">Faceit</a>
+</div>
+</div>
+
+<div class="player-elo">
+current elo: <br>
+<span id="elo-stage">Загрузка...</span>
+</div>
+
+</div>
+</div>
+
+<!-- veerzevul -->
+<div class="player-card">
+<div class="player-avatar">
+<img src="https://distribution.faceit-cdn.net/images/803b1047-3a9f-4fe9-8035-87ef4764d0cd.jpg">
+</div>
+
+<div class="player-content">
+
+<div class="player-info">
+<div class="info-row nickname">nickname: <span>veerzeevul</span></div>
+<div class="info-row">pos: <span>sniper</span></div>
+<div class="info-row">info: <span>sereja 22 y.o</span></div>
+
+<div class="player-links">
+<a href="https://steamcommunity.com/id/Veerzevul" target="_blank" class="p-link">Steam</a>
+<a href="https://www.faceit.com/ru/players/Veerzevul" target="_blank" class="p-link">Faceit</a>
+</div>
+</div>
+
+<div class="player-elo">
+current elo: <br>
+<span id="elo-veerzevul">Загрузка...</span>
+</div>
+
+</div>
+</div>
+
+<div class="section-divider">Inactive</div>
+
+<div class="roster-container inactive-section">
+
+<div class="player-card">
+<div class="player-avatar">
+<img src="https://distribution.faceit-cdn.net/images/8822e1db-16e4-436d-b5eb-035f6eb5dace.jpeg">
+</div>
+
+<div class="player-content">
+
+<div class="player-info">
+<div class="info-row nickname">nickname: <span>askur1337</span></div>
+<div class="info-row">pos: <span>site anchor</span></div>
+<div class="info-row">info: <span>artem 23 y.o</span></div>
+
+<div class="player-links">
+<a href="https://steamcommunity.com/profiles/76561199160951698" target="_blank" class="p-link">Steam</a>
+<a href="https://www.faceit.com/ru/players/Askur666" target="_blank" class="p-link">Faceit</a>
+</div>
+</div>
+
+<div class="player-elo">
+current elo: <br>
+<span id="elo-askur666">Загрузка...</span>
+</div>
+
+</div>
+</div>
+
+</div>
 
 </div>
 
 <script>
-    const preloader = document.getElementById('preloader');
 
-    if (sessionStorage.getItem('preloaderShown')) {
-        preloader.classList.add('instant-hide');
-    } else {
-        window.addEventListener('load', function () {
-            setTimeout(() => {
-                preloader.classList.add('fade-out');
-                sessionStorage.setItem('preloaderShown', 'true');
-            }, 2000);
-        });
-    }
+const preloader=document.getElementById('preloader');
 
-    const playersElo = [
-        {
-            id: 'elo-takinami',
-            user: 'takinami',
-            cache: '2319'
-        },
-        {
-            id: 'elo-mozzambique',
-            user: 'mozzambique',
-            cache: '2048'
-        },
-        {
-            id: 'elo-stage',
-            user: 'stage',
-            cache: '2198'
-        },
-        {
-            id: 'elo-veerzevul',
-            user: 'Veerzevul',
-            cache: '2066'
-        }
-    ];
+if(sessionStorage.getItem('preloaderShown')){
+preloader.classList.add('instant-hide');
+}else{
+window.addEventListener('load',function(){
+setTimeout(()=>{
+preloader.classList.add('fade-out');
+sessionStorage.setItem('preloaderShown','true');
+},2000);
+});
+}
 
-    playersElo.forEach(player => {
-        fetch(`https://api.vthe.cz/faceit?user=${player.user}`)
-            .then(res => res.text())
-            .then(elo => {
-                document.getElementById(player.id).innerText = elo;
-            })
-            .catch(() => {
-                document.getElementById(player.id).innerText = player.cache;
-            });
-    });
+const playersElo=[
+{
+id:'elo-takinami',
+user:'takinami',
+cache:'2319'
+},
+{
+id:'elo-mozzambique',
+user:'mozzambique',
+cache:'2048'
+},
+{
+id:'elo-stage',
+user:'stage',
+cache:'2198'
+},
+{
+id:'elo-veerzevul',
+user:'Veerzevul',
+cache:'2066'
+},
+{
+id:'elo-askur666',
+user:'Askur666',
+cache:'Unranked'
+}
+];
+
+playersElo.forEach(player=>{
+
+fetch(`https://api.vthe.cz/faceit?user=${player.user}`)
+
+.then(res=>res.text())
+
+.then(elo=>{
+document.getElementById(player.id).innerText=elo;
+})
+
+.catch(()=>{
+document.getElementById(player.id).innerText=player.cache;
+});
+
+});
+
 </script>
 
 </body>
