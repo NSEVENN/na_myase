@@ -401,7 +401,7 @@
                         <a href="https://www.faceit.com/ru/players/takinami" target="_blank" class="p-link">Faceit</a>
                     </div>
                 </div>
-                <div class="player-elo">current elo: <br><span>2319</span></div>
+                <div class="player-elo">current elo: <br><span id="elo-takinami">Загрузка...</span></div>
             </div>
         </div>
 
@@ -419,7 +419,7 @@
                         <a href="https://www.faceit.com/ru/players/mozzambique" target="_blank" class="p-link">Faceit</a>
                     </div>
                 </div>
-                <div class="player-elo">current elo: <br><span>2048</span></div>
+                <div class="player-elo">current elo: <br><span id="elo-mozzambique">Загрузка...</span></div>
             </div>
         </div>
 
@@ -437,7 +437,7 @@
                         <a href="https://www.faceit.com/ru/players/stage" target="_blank" class="p-link">Faceit</a>
                     </div>
                 </div>
-                <div class="player-elo">current elo: <br><span>2198</span></div>
+                <div class="player-elo">current elo: <br><span id="elo-stage">Загрузка...</span></div>
             </div>
         </div>
 
@@ -455,7 +455,7 @@
                         <a href="https://www.faceit.com/ru/players/Veerzevul" target="_blank" class="p-link">Faceit</a>
                     </div>
                 </div>
-                <div class="player-elo">current elo: <br><span>2066</span></div>
+                <div class="player-elo">current elo: <br><span id="elo-Veerzevul">Загрузка...</span></div>
             </div>
         </div>
 
@@ -476,7 +476,7 @@
                             <a href="https://www.faceit.com/ru/players/Askur666" target="_blank" class="p-link">Faceit</a>
                         </div>
                     </div>
-                    <div class="player-elo">current elo: <br><span>Unranked</span></div>
+                    <div class="player-elo">current elo: <br><span id="elo-Askur666">Загрузка...</span></div>
                 </div>
             </div>
         </div>
@@ -496,6 +496,31 @@
                 }, 2000);
             });
         }
+
+
+        const players = [
+            { user: 'takinami', elementId: 'elo-takinami', cache: '2319 (кэш)' },
+            { user: 'mozzambique', elementId: 'elo-mozzambique', cache: '2048 (кэш)' },
+            { user: 'stage', elementId: 'elo-stage', cache: '2198 (кэш)' },
+            { user: 'Veerzevul', elementId: 'elo-Veerzevul', cache: '2066 (кэш)' },
+            { user: 'Askur666', elementId: 'elo-Askur666', cache: 'Unranked (кэш)' }
+        ];
+
+        function fetchPlayerElo(player) {
+            fetch(`https://api.vthe.cz/faceit?user=${player.user}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('Network error');
+                    return res.text();
+                })
+                .then(elo => {
+                    document.getElementById(player.elementId).innerText = elo.trim() ? elo : player.cache;
+                })
+                .catch(() => {
+                    document.getElementById(player.elementId).innerText = player.cache;
+                });
+        }
+
+        players.forEach(player => fetchPlayerElo(player));
     </script>
 
 </body>
