@@ -6,6 +6,7 @@
 <title>na_myase — Состав команды</title>
 
 <style>
+
 #preloader{
 position:fixed;
 top:0;
@@ -27,8 +28,14 @@ animation:fadeInLogo 1.2s ease forwards;
 }
 
 @keyframes fadeInLogo{
-from{opacity:0;transform:scale(.9);}
-to{opacity:1;transform:scale(1);}
+from{
+opacity:0;
+transform:scale(.9);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
 }
 
 #preloader.fade-out{
@@ -68,15 +75,24 @@ position:relative;
 body::before{
 content:"";
 position:fixed;
-inset:0;
+top:0;
+left:0;
+right:0;
+bottom:0;
 background:rgba(0,0,0,.65);
 z-index:-1;
 }
 
 @keyframes gradientBg{
-0%{background-position:center center,0% 50%;}
-50%{background-position:center center,100% 50%;}
-100%{background-position:center center,0% 50%;}
+0%{
+background-position:center center,0% 50%;
+}
+50%{
+background-position:center center,100% 50%;
+}
+100%{
+background-position:center center,0% 50%;
+}
 }
 
 .social-links{
@@ -104,6 +120,7 @@ transition:.3s;
 .social-link:hover{
 transform:scale(1.1);
 background:#ff4d4d;
+box-shadow:0 0 20px #ff4d4d;
 }
 
 .social-link svg{
@@ -182,6 +199,7 @@ letter-spacing:8px;
 color:#ff4d4d;
 text-transform:uppercase;
 margin:20px 0 10px;
+text-shadow:0 0 15px rgba(255,77,77,.8);
 }
 
 .player-card{
@@ -192,11 +210,13 @@ border-left:5px solid #ff4d4d;
 border-radius:4px;
 overflow:hidden;
 transition:.2s;
+box-shadow:0 5px 20px rgba(0,0,0,.6);
 }
 
 .player-card:hover{
 transform:translateX(5px);
 border-color:#ff4d4d;
+box-shadow:0 4px 25px rgba(255,77,77,.25);
 }
 
 .inactive-section .player-card{
@@ -241,8 +261,7 @@ color:#fff;
 font-weight:bold;
 }
 
-.info-row.nickname span,
-.player-elo span{
+.info-row.nickname span{
 color:#ff4d4d;
 font-size:19px;
 text-transform:uppercase;
@@ -278,7 +297,48 @@ background:#250007;
 
 .player-elo{
 text-align:right;
-font-size:14px;
+min-width:120px;
+padding:10px 14px;
+background:linear-gradient(145deg,#120003,#220008);
+border:1px solid #ff4d4d;
+border-radius:6px;
+box-shadow:
+0 0 15px rgba(255,77,77,.15),
+inset 0 0 10px rgba(255,77,77,.08);
+position:relative;
+
+font-size:11px;
+color:#999;
+text-transform:uppercase;
+letter-spacing:2px;
+line-height:1.6;
+}
+
+.player-elo::before{
+content:"FACEIT";
+position:absolute;
+top:-8px;
+right:10px;
+background:#0d0d0d;
+color:#ff4d4d;
+font-size:9px;
+font-weight:700;
+letter-spacing:2px;
+padding:2px 6px;
+border:1px solid #ff4d4d;
+border-radius:3px;
+}
+
+.player-elo span{
+display:block;
+margin-top:2px;
+font-size:30px;
+font-weight:900;
+color:#ff4d4d;
+text-shadow:
+0 0 8px rgba(255,77,77,.6),
+0 0 18px rgba(255,0,60,.35);
+letter-spacing:1px;
 }
 
 @media(max-width:480px){
@@ -303,11 +363,21 @@ height:110px;
 padding:10px 12px;
 }
 
-.info-row.nickname span,
+.player-elo{
+min-width:95px;
+padding:8px 10px;
+}
+
 .player-elo span{
+font-size:22px;
+}
+
+.info-row.nickname span{
 font-size:15px;
 }
+
 }
+
 </style>
 </head>
 
@@ -369,7 +439,7 @@ font-size:15px;
 </div>
 
 <div class="player-elo">
-current elo: <br>
+current elo:
 <span id="elo-takinami">Загрузка...</span>
 </div>
 
@@ -396,7 +466,7 @@ current elo: <br>
 </div>
 
 <div class="player-elo">
-current elo: <br>
+current elo:
 <span id="elo-mozzambique">Загрузка...</span>
 </div>
 
@@ -423,7 +493,7 @@ current elo: <br>
 </div>
 
 <div class="player-elo">
-current elo: <br>
+current elo:
 <span id="elo-stage">Загрузка...</span>
 </div>
 
@@ -450,7 +520,7 @@ current elo: <br>
 </div>
 
 <div class="player-elo">
-current elo: <br>
+current elo:
 <span id="elo-veerzevul">Загрузка...</span>
 </div>
 
@@ -480,7 +550,7 @@ current elo: <br>
 </div>
 
 <div class="player-elo">
-current elo: <br>
+current elo:
 <span id="elo-askur666">Загрузка...</span>
 </div>
 
