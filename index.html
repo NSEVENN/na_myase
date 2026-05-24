@@ -436,9 +436,19 @@
                         <a href="https://steamcommunity.com/id/enveeltop1" target="_blank" class="p-link">Steam</a>
                         <a href="https://www.faceit.com/ru/players/stage" target="_blank" class="p-link">Faceit</a>
                     </div>
-                </div>
-                <div class="player-elo">current elo: <br><span>2198</span></div>
-            </div>
+                <div class="player-elo">current elo: <br><span id="elo-takinami">Загрузка...</span></div>
+
+<script>
+  // Скрипт сам идет по ссылке, берет актуальное ЭЛО и вставляет на сайт
+  fetch('https://api.vthe.cz/faceit?user=takinami')
+    .then(res => res.text())
+    .then(elo => {
+        document.getElementById('elo-takinami').innerText = elo;
+    })
+    .catch(() => {
+        document.getElementById('elo-takinami').innerText = '2319 (кэш)';
+    });
+</script>
         </div>
 
         <div class="player-card">
