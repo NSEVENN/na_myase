@@ -499,12 +499,12 @@
 
 
         const players = [
-            { user: 'takinami', elementId: 'elo-takinami', cache: '2319' },
-            { user: 'mozzambique', elementId: 'elo-mozzambique', cache: '2048' },
-            { user: 'stage', elementId: 'elo-stage', cache: '2198' },
-            { user: 'Veerzevul', elementId: 'elo-Veerzevul', cache: '2066' },
-            { user: 'Askur666', elementId: 'elo-Askur666', cache: 'Unranked' }
-        ];
+    { user: 'takinami', elementId: 'elo-takinami', cache: '2319' },
+    { user: 'mozzambique', elementId: 'elo-mozzambique', cache: '2048' },
+    { user: 'stage', elementId: 'elo-stage', cache: '2198' },
+    { user: 'Veerzevul', elementId: 'elo-Veerzevul', cache: '2066' },
+    { user: 'Askur666', elementId: 'elo-Askur666', cache: 'Unranked' }
+                        ];
 
         function fetchPlayerElo(player) {
             fetch(`https://api.vthe.cz/faceit?user=${player.user}`)
